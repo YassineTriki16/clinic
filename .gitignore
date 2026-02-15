@@ -1,4 +1,8 @@
 node_modules/
+PRD.md
+architecture.md
+tech_spec.md
+api_spec.md
 clinic.db
 *.db
 .DS_Store
