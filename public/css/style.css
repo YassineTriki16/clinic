@@ -1,0 +1,450 @@
+/* Mobile-first clinic app */
+:root {
+  --bg: #f5f5f0;
+  --card: #fff;
+  --primary: #1a5f4a;
+  --primary-light: #268562;
+  --text: #222;
+  --text-muted: #666;
+  --danger: #b03030;
+  --border: #ddd;
+  --touch-min: 44px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Header */
+.header {
+  background: var(--primary);
+  color: #fff;
+  padding: 1rem 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-title {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 0;
+  background: rgba(0,0,0,0.1);
+  border-radius: 8px 8px 0 0;
+}
+
+.nav-tab {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+  text-align: center;
+  font-size: 0.95rem;
+  border-radius: 8px 8px 0 0;
+  min-height: var(--touch-min);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-tab.active {
+  background: var(--bg);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.nav-tab:active {
+  opacity: 0.9;
+}
+
+/* Main */
+.main {
+  flex: 1;
+  background: var(--bg);
+  overflow-y: auto;
+}
+
+/* Screens */
+.screen {
+  display: none;
+  padding: 1rem;
+  padding-bottom: 5rem;
+}
+
+.screen.active {
+  display: block;
+}
+
+/* Typography */
+h2 {
+  font-size: 1.1rem;
+  margin: 0 0 0.75rem;
+  color: var(--text);
+}
+
+/* Today section */
+.today-section {
+  margin-bottom: 1.5rem;
+}
+
+.today-section h2 {
+  color: var(--primary);
+}
+
+/* Lists */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.list-item {
+  background: var(--card);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  min-height: var(--touch-min);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list-item:active {
+  opacity: 0.95;
+}
+
+.list-item-name {
+  font-weight: 500;
+}
+
+.list-item-meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Appointment list */
+.appointment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.appointment-card {
+  background: var(--card);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  border-left: 4px solid var(--primary);
+}
+
+.appointment-card.cancelled {
+  border-left-color: var(--text-muted);
+  opacity: 0.8;
+}
+
+.appointment-card .time {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.appointment-card .patient {
+  margin-top: 0.25rem;
+}
+
+.appointment-card .reason {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.appointment-card .status {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+/* Quick actions */
+.quick-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Buttons */
+.btn {
+  padding: 0.875rem 1.25rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  min-height: var(--touch-min);
+  cursor: pointer;
+  font-weight: 500;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn-primary:active {
+  background: var(--primary-light);
+}
+
+.btn-secondary {
+  background: var(--border);
+  color: var(--text);
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: #fff;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-sm {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  min-height: 36px;
+}
+
+/* Search */
+.search-bar {
+  margin-bottom: 1rem;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  min-height: var(--touch-min);
+}
+
+/* Empty state */
+.empty-state {
+  color: var(--text-muted);
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* FAB */
+.fab-wrap {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1rem;
+  z-index: 5;
+}
+
+.fab {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fab:active {
+  transform: scale(0.96);
+}
+
+/* Patient detail */
+.detail-card {
+  background: var(--card);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.detail-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.section-title {
+  font-size: 1rem;
+  margin: 1rem 0 0.5rem;
+  color: var(--primary);
+}
+
+.treatment-item {
+  background: var(--card);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+
+.treatment-item .desc {
+  font-weight: 500;
+}
+
+.treatment-item .meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 100;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0;
+}
+
+.modal-content {
+  background: var(--card);
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 16px 16px 0 0;
+  padding: 1.5rem;
+}
+
+.modal h2 {
+  margin-top: 0;
+}
+
+/* Forms */
+label {
+  display: block;
+  margin: 0.75rem 0 0.25rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  min-height: var(--touch-min);
+  font-family: inherit;
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+select {
+  cursor: pointer;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.form-actions .btn {
+  flex: 1;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 5rem;
+  left: 1rem;
+  right: 1rem;
+  background: var(--text);
+  color: #fff;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  text-align: center;
+  z-index: 200;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.toast.error {
+  background: var(--danger);
+}
+
+/* Back link */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--primary);
+  text-decoration: none;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  min-height: var(--touch-min);
+}
+
+.back-link:active {
+  opacity: 0.8;
+}
+
+/* Larger touch targets for interactive elements */
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}

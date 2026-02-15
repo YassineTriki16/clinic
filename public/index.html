@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#1a5f4a">
+  <title>Leorio's Clinic</title>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="app">
+    <header class="header">
+      <h1 class="header-title">Leorio's Clinic</h1>
+      <nav class="nav-tabs">
+        <a href="#home" class="nav-tab active" data-tab="home">Home</a>
+        <a href="#patients" class="nav-tab" data-tab="patients">Patients</a>
+        <a href="#appointments" class="nav-tab" data-tab="appointments">Appointments</a>
+      </nav>
+    </header>
+
+    <main class="main">
+      <!-- Home -->
+      <section id="screen-home" class="screen active">
+        <div class="today-section">
+          <h2>Today's Appointments</h2>
+          <div id="today-list" class="appointment-list"></div>
+          <p id="today-empty" class="empty-state hidden">No appointments today</p>
+        </div>
+        <div class="quick-actions">
+          <button type="button" class="btn btn-primary btn-block" data-action="add-patient">Add Patient</button>
+          <button type="button" class="btn btn-primary btn-block" data-action="add-appointment">Add Appointment</button>
+        </div>
+      </section>
+
+      <!-- Patients -->
+      <section id="screen-patients" class="screen">
+        <div class="search-bar">
+          <input type="search" id="patient-search" placeholder="Search by name..." autocomplete="off">
+        </div>
+        <div id="patient-list" class="list"></div>
+        <p id="patients-empty" class="empty-state hidden">No patients yet</p>
+        <div class="fab-wrap">
+          <button type="button" class="fab" data-action="add-patient" aria-label="Add patient">+</button>
+        </div>
+      </section>
+
+      <!-- Patient Detail -->
+      <section id="screen-patient-detail" class="screen">
+        <div id="patient-detail-content"></div>
+        <div class="fab-wrap">
+          <button type="button" class="fab" data-action="add-treatment-patient" aria-label="Add treatment">+</button>
+        </div>
+      </section>
+
+      <!-- Appointments -->
+      <section id="screen-appointments" class="screen">
+        <h2>Upcoming Appointments</h2>
+        <div id="appointment-list" class="appointment-list"></div>
+        <p id="appointments-empty" class="empty-state hidden">No upcoming appointments</p>
+        <div class="fab-wrap">
+          <button type="button" class="fab" data-action="add-appointment" aria-label="Add appointment">+</button>
+        </div>
+      </section>
+
+      <!-- Modal: Patient Form -->
+      <div id="modal-patient" class="modal hidden">
+        <div class="modal-content">
+          <h2 id="modal-patient-title">Add Patient</h2>
+          <form id="form-patient">
+            <input type="hidden" id="patient-id">
+            <label>Full Name *</label>
+            <input type="text" id="patient-name" required>
+            <label>Phone *</label>
+            <input type="tel" id="patient-phone" required>
+            <label>Age or DOB</label>
+            <input type="text" id="patient-age" placeholder="e.g. 35 or 1990-01-15">
+            <label>Notes</label>
+            <textarea id="patient-notes" rows="3"></textarea>
+            <div class="form-actions">
+              <button type="button" class="btn btn-secondary" data-action="close-modal">Cancel</button>
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Modal: Appointment Form -->
+      <div id="modal-appointment" class="modal hidden">
+        <div class="modal-content">
+          <h2 id="modal-appointment-title">Add Appointment</h2>
+          <form id="form-appointment">
+            <input type="hidden" id="appointment-id">
+            <label>Patient *</label>
+            <select id="appointment-patient" required></select>
+            <label>Date & Time *</label>
+            <input type="datetime-local" id="appointment-datetime" required>
+            <label>Reason</label>
+            <input type="text" id="appointment-reason" placeholder="e.g. Checkup">
+            <div class="form-actions">
+              <button type="button" class="btn btn-secondary" data-action="close-modal">Cancel</button>
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Modal: Treatment Form -->
+      <div id="modal-treatment" class="modal hidden">
+        <div class="modal-content">
+          <h2 id="modal-treatment-title">Add Treatment</h2>
+          <form id="form-treatment">
+            <input type="hidden" id="treatment-id">
+            <input type="hidden" id="treatment-patient-id">
+            <label>Patient *</label>
+            <select id="treatment-patient" required></select>
+            <label>Description *</label>
+            <input type="text" id="treatment-description" required placeholder="e.g. Prescription for fever">
+            <label>Medication</label>
+            <input type="text" id="treatment-medication" placeholder="e.g. Paracetamol 500mg">
+            <label>Notes</label>
+            <textarea id="treatment-notes" rows="2"></textarea>
+            <label>Link to Appointment (optional)</label>
+            <select id="treatment-appointment">
+              <option value="">None</option>
+            </select>
+            <div class="form-actions">
+              <button type="button" class="btn btn-secondary" data-action="close-modal">Cancel</button>
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Modal: Confirm Delete -->
+      <div id="modal-confirm" class="modal hidden">
+        <div class="modal-content">
+          <p id="confirm-message">Are you sure you want to delete?</p>
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" data-action="close-modal">Cancel</button>
+            <button type="button" id="confirm-yes" class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

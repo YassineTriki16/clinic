@@ -1,0 +1,8 @@
+node_modules/
+clinic.db
+*.db
+.DS_Store
+*.log
+.env
+dist/
+build/
